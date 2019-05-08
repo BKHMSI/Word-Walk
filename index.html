@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html ng-app="WordWalk">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+        <script type="text/javascript" charset="utf8" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="app.js"></script>
+        <title>Word Walk</title>
+    </head>
+    <style>
+    </style>
+    <body ng-controller="Controller">
+        <div class="container">
+            <div class="alert alert-danger" role="alert" ng-hide="error==''" style="margin:10px">
+                {{error}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="error=''">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div style="text-align:center; padding:20px">
+                <h1>Word Walk</h1>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label>Steps</label>
+                    <input class="form-control" ng-model="steps" placeholder="# of Steps">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Neighbours / Step</label>
+                    <input class="form-control" ng-model="neighbours" placeholder="# of Nearest Neighbours">
+                </div>
+                <div class="form-group col-md-4">
+                    <label>Dimension Size</label>
+                    <select class="form-control"
+                        ng-model="selected_dimension" 
+                        ng-options="option for option in dimensions">
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <input class="form-control form-control-lg" type="text" ng-model="start_word" placeholder="Start Word">
+                </div>
+                <div class="col-md-6">
+                    <input class="form-control form-control-lg" type="text" ng-model="end_word" placeholder="End Word">
+                </div>
+            </div>
+            <button type="button" class="btn btn-outline-success btn-block" style="margin-top:10px" ng-click="run()">Run</button>
+           
+            <div style="overflow-x: auto">
+            <table class="table table-bordered" style="margin-top:10px;" ng-hide="results.length == 0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Word</th>
+                        <th ng-repeat="idx in neighbours_indecies">Neighbour {{idx}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="neighbours in results track by $index">
+                        <th scope="row" >Step {{$index}}</th>
+                        <td ng-repeat="word in neighbours">
+                            {{word.value}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </body>
+</html>
+
