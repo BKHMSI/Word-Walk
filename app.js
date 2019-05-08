@@ -115,6 +115,13 @@ app.controller('Controller', ['$scope', "$http", function($scope, $http) {
         }
     };
 
+    $scope.random = function() {
+        let vocab = Object.keys(embeddings);
+        $scope.start_word = vocab[Math.floor(Math.random()*vocab.length)];
+        $scope.end_word = vocab[Math.floor(Math.random()*vocab.length)];
+        $scope.run();
+    }
+
     load_embeddings($scope.selected_dimension, []);
 
 }]);

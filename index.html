@@ -4,6 +4,7 @@
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script type="text/javascript" charset="utf8" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
         <script type="text/javascript" charset="utf8" src="app.js"></script>
         <title>Word Walk</title>
@@ -20,7 +21,14 @@
             </div>
             <div style="text-align:center; padding:20px">
                 <h1>Word Walk</h1>
+                <small>Exploring Word Embeddings</small>
             </div>
+
+            <div style="text-align:center; margin:0 80px 80px 80px">
+                <p>Explore the space connecting any two English words* by doing a simple linear interpolation between their word embeddings. You can specify the "pace" (steps) of your walk and the "range" (neighbours per step) of your eyesight to suit your needs. Take the chance to find interesting connections between different words. You can also notice a lot of social and gender biases as the embeddings were created from crawling the internet. You can find more details on the specifics in the <a href="https://github.com/BKHMSI/Word-Walk">ReadMe</a>.</p>
+                <small>*I selected the top 10k most frequent non-stopwords from the <a href="https://fasttext.cc/docs/en/crawl-vectors.html">CC FastText English embeddings</a>.</small>
+            </div>
+
             <div class="row">
                 <div class="form-group col-md-4">
                     <label>Steps</label>
@@ -44,7 +52,8 @@
                     <input class="form-control form-control-lg" type="text" ng-model="end_word" placeholder="End Word">
                 </div>
             </div>
-            <button type="button" class="btn btn-outline-success btn-block" style="margin-top:10px" ng-click="run()">Run</button>
+            <button type="button" class="btn btn-outline-primary btn-block" style="margin-top:10px" ng-click="run()">Run</button>
+            <button type="button" class="btn btn-outline-success btn-block" style="margin-top:10px" ng-click="random()"><i class="fa fa-random"></i> Random</button>
            
             <div style="overflow-x: auto">
             <table class="table table-bordered" style="margin-top:10px;" ng-hide="results.length == 0">
@@ -65,6 +74,8 @@
                 </tbody>
             </table>
             </div>
+            <hr>
+            <small>&copy; Badr AlKhamissi</small>
         </div>
     </body>
 </html>
