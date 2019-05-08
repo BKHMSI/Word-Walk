@@ -1,7 +1,7 @@
 var app = angular.module("WordWalk",[]);
 
 app.controller('Controller', ['$scope', "$http", function($scope, $http) {
-    $scope.dimensions = [16, 8, 4];
+    $scope.dimensions = [16];
     $scope.selected_dimension = 16;
     $scope.steps = 10;
     $scope.neighbours = 3;
@@ -102,6 +102,7 @@ app.controller('Controller', ['$scope', "$http", function($scope, $http) {
     }
 
     $scope.run = function() {
+        $scope.error = "";
         $scope.results = [];
         $scope.neighbours_indecies = [];
         for(let i = 1; i<$scope.neighbours; i++)
