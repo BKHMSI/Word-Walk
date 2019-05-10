@@ -4,7 +4,7 @@ app.controller('Controller', ['$scope', "$http", function($scope, $http) {
     $scope.dimensions = [16];
     $scope.selected_dimension = 16;
     $scope.steps = 10;
-    $scope.neighbours = 3;
+    $scope.neighbours = 2;
     $scope.neighbours_indecies = [];
     $scope.start_word = "";
     $scope.end_word = "";
@@ -85,7 +85,7 @@ app.controller('Controller', ['$scope', "$http", function($scope, $http) {
             return ((a.distance < b.distance) ? -1 : ((a.distance == b.distance) ? 0 : 1));
         });
         
-        return nearest_words.slice(0, $scope.neighbours);
+        return nearest_words.slice(0, $scope.neighbours+1);
     }
 
     function linear_interpolation() {
@@ -105,7 +105,7 @@ app.controller('Controller', ['$scope', "$http", function($scope, $http) {
         $scope.error = "";
         $scope.results = [];
         $scope.neighbours_indecies = [];
-        for(let i = 1; i<$scope.neighbours; i++)
+        for(let i = 1; i<$scope.neighbours+1; i++)
             $scope.neighbours_indecies.push(i);
 
         let vocab = Object.keys(embeddings);
